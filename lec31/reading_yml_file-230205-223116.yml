@@ -1,0 +1,14 @@
+---
+- name: Readiing yml file from playbook
+  hosts: rhel
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: Reading the yml file 
+    include_vars:
+      file: my_yml.yml
+
+  - name: Installation wget
+    yum:
+      name: "{{ packages.package_wget.name }}"
+      state: "{{ packages.package_wget.state }}"

@@ -1,0 +1,17 @@
+---
+- name: reading package details from JSON file 
+  hosts: rhel
+  gather_facts: false
+  become: yes 
+
+  tasks:
+  - name: Read package details from JSON file
+    include_vars:
+      file: "{{package_info_file}}"
+    vars:
+      package_info_file: "myjson.json"
+
+  - name: Install/Uninstall package 
+    yum:
+      name: "{{package_info.package_name }}"
+      state: "{{ package_info.package_state }}"
