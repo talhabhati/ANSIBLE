@@ -1,0 +1,37 @@
+---
+- name: Basic data types 
+  hosts: localhost
+  vars:
+    my_int: 52
+    my_Str: "Abdeali Dodiya"
+    my_float: 3.14
+    my_bool: true
+    my_list: [5,4,7,8,9]
+    my_dict: {"name":"Abdeali","age": 56}
+    my_none: None
+    my_datatime: 2023-02-03T10:21:00Z
+  tasks:
+  - name: Pirnt integer
+    debug:
+      msg: "{{my_int }}"
+  - name: Pirnt my_Str
+    debug:
+      msg: "{{my_Str }}"
+  - name: Pirnt my_float
+    debug:
+      msg: "{{my_float }}"
+  - name: Pirnt my_bool
+    debug:
+      msg: "{{my_bool }}"
+  - name: Pirnt my_list
+    debug:
+      msg: "{{my_list }}"
+  - name: Pirnt my_dict
+    debug:
+      msg: "{{my_dict }}"
+  - name: Pirnt my_none
+    debug:
+      msg: "{{my_none }}"
+  - name: Pirnt my_datatime
+    debug:
+      msg: "{{my_datatime }}"
