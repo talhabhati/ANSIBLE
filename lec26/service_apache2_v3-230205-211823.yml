@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+  - name: Check Apache service restarting on Ubuntu  
+    service:
+      name: apache2
+      state: restarted
+    register: apache_restart
+    when: ansible_os_family == "Debian"
+  
+  - name: Display the apache2 service status 
+    debug: 
+      msg: "Apache2 is {{ apache_restart.status.SubState }} on {{inventory_hostname}}"
+    when: ansible_os_family == "Debian"
+
+  - name: Check httpd service and restartin on RHEL
+    service:
+      name: httpd
+      state: restarted
+    register: httpd_restart
+    when: ansible_os_family == "RedHat"
+
+  - name: Display the httpd service status 
+    debug:
+      var: httpd_restart.state
+    when: ansible_os_family == "RedHat"
+ 

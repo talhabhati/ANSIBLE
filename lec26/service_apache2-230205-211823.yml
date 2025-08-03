@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu
+  tasks: 
+  - name: Start the services 
+    shell: "systemctl status apache2"
+    register: apache_status
+  - name: Display the apache2 service status 
+    debug: 
+      msg: "Apache service status is {{ apache_status }}"
+
+ 
