@@ -1,0 +1,11 @@
+---
+- name: Installation package
+  hosts: rhel
+  become: true 
+  vars: 
+    package_name: "{{ mypckg }}"
+  tasks: 
+  - name: Display the package 
+    yum: 
+      name: "{{ package_name }}" 
+      state: present
