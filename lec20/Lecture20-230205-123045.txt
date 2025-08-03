@@ -1,0 +1,144 @@
+
+
+
+Create your json file :
+
+1. hostname :-
+hostname | tr -d "\n"
+
+
+2. Ip address :-
+hostname -i | awk '{print $2}' | tr -d '\n'
+
+
+3. OS flavour :-
+redhat :-
+cat /etc/redhat-release 
+
+ubuntu centOD 
+cat /etc/os-release 
+
+#cat /etc/*-release 
+
+CMD : cat /etc/*-release | grep -iw 'ID' | awk -F = '{print $2}' | tr -d '\n'
+
+
+4. df output :-
+df -h | grep -v 'tmpfs'
+
+
+
+
+JSON FIle :-
+{
+        "header_para": ["Hostname","Ip Address", "Df -h (Mount storage)"],
+        "hostname": "hostname | tr -d '\n'",
+        "ip_address": "hostname -i | awk '{print $2}' | tr -d '\n'",
+        "os_flavour": "cat /etc/*-release | grep -iw 'ID' | awk -F = '{print $2}' | tr -d '\n'",
+        "df_details": "df -h | grep -v 'tmpfs'"
+
+}
+
+
+
+
+$ cat GET_OS_DETAILS.py
+#!/usr/bin/python
+import os
+import csv
+import json
+from datetime import *
+
+
+date=date.today()
+time1=datetime.now()
+
+filepath=time1.strftime("DAILY_REPORTS_%Y-%m-%d%H%M.csv")
+jsonfile="my_linux_cmd.json"
+with open(jsonfile) as jf:
+    my_dict=json.load(jf)
+os_name=os.popen(my_dict['os_flavour']).read().strip('\n')
+print(os_name)
+if os_name == 'ubuntu' or os_name=='rhel':
+    print("ubuntu/RHEL Os found and we are collecting information , Please wait!!!!")
+
+    #hostname details
+    hostname=os.popen(my_dict["hostname"]).read()
+    print(hostname)
+
+    #Ip details
+    ip=os.popen(my_dict["ip_address"]).read()
+    print(ip)
+
+    #File storage details
+    df_details=os.popen(my_dict["df_details"]).read()
+    print(df_details)
+
+
+    #Storin variable into list for inserting CSV data
+    header_csv=(my_dict['header_para'])
+    header_csv=[str(x) for x in header_csv]
+    print(header_csv)
+
+    #Data csv
+    data_csv=  [hostname,ip,df_details]
+
+    file1=open(filepath,'a+')
+    writer=csv.writer(file1)
+    writer.writerow(header_csv)
+    writer.writerow(data_csv)
+    file1.close()
+
+    print("FIle import successfully from your current directory"+filepath)
+else:
+    print("Other os found ")
+
+$ cat DAILY_REPORTS_2023-01-261305.csv
+Hostname,Ip Address,Df -h (Mount storage)
+ansible_master,192.168.1.20,"Filesystem                         Size  Used Avail Use% Mounted on
+udev                               461M     0  461M   0% /dev
+/dev/mapper/ubuntu--vg-ubuntu--lv  8.8G  4.1G  4.3G  49% /
+/dev/sda2                          974M  149M  759M  17% /boot
+"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
