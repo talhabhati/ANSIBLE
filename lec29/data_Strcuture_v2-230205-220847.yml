@@ -1,0 +1,17 @@
+---
+- name: Installation packages 
+  hosts: rhel
+  gather_facts: false
+  become: true
+  vars: 
+    pakages: ["wget","vim"]
+  tasks:
+  - name: Update package files 
+    yum:
+      update_cache: true
+  - name: Packages list 
+    yum:
+      name: "{{pakages}}"
+      state: present
+
+
