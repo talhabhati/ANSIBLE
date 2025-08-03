@@ -1,0 +1,4 @@
+HOSTNAME,IP ADDRESS,DF -h (mount details)
+rhel1,192.168.1.13,"Filesystem             Size  Used Avail Use% Mounted on
+/dev/mapper/rhel-root   16G  1.6G   14G  11% /
+/dev/sda1             1014M  217M  798M  22% /boot"
