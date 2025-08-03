@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check apache2 version
+    shell: apache2 -v
+    register: apache2_ver
+  - name: Printing the apache2 version 
+    debug:
+      var: apache2_ver.stdout

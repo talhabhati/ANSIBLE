@@ -1,0 +1,18 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+  - name: Check apache2 version
+    shell: apache2 -v
+    register: apache2_ver
+    when: ansible_os_family == "Debian"
+
+  - name: Check HTTPD version on RHEL
+    shell: httpd -v 
+    register: httpd_ver
+    when: ansible_os_family == "RedHat"
+
+  - name: Printing the apache2 version and httpd version
+    debug:
+      var: apache2_ver.stdout
+      var: httpd_ver.stdout | default("Not defined")
