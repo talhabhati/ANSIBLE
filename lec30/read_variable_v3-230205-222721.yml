@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_prompt: 
+    - name: "abd"
+      prompt: "Enter the value"
+      private: no
+  tasks:
+  - debug:
+      msg:
+       - "The variable is : {{abd}}"

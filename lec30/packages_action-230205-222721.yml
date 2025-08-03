@@ -1,0 +1,15 @@
+---
+- name: Intall Packages based on user input
+  hosts: rhel
+  gather_facts: no
+  become: yes 
+  vars_prompt:
+  - name: "package_name"
+    prompt: "Enter the name of package for installation::"
+    private: no
+
+  tasks:
+  - name: Intallation the package 
+    yum: 
+      name: "{{package_name}}"
+      state: present

@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  vars: 
+    abd: 52
+  tasks:
+  - debug:
+      msg:
+       - "The variable is : {{abd}}"
