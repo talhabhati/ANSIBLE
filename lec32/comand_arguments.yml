@@ -1,0 +1,10 @@
+---
+- name: Installation packages 
+  hosts: rhel
+  become: true 
+  vars: 
+    mynum: 52
+  tasks:
+  - name: Display the data
+    debug:
+      msg: "The myabd value is {{ mynum  }}"
