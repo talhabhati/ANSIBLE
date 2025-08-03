@@ -1,0 +1,14 @@
+---
+- name: Printin the words
+  hosts: localhost
+  vars:
+    data:
+      - Abdeali
+      - Kazim
+      - Ali
+      - Sarah
+  tasks:
+  - name: Display the data
+    debug:
+      var: item
+    loop: "{{data}}"
