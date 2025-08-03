@@ -1,0 +1,16 @@
+- name: This is example of vars and set_facts 
+  hosts: localhost
+  gather_facts: false
+  vars:
+    abd: "Abdeali Dodiya"
+  tasks:
+  - name: this is set_Facts example
+    set_fact:
+      xyz: "Alnafi"
+
+  - name: Printing the variable from vars 
+    debug:
+      var: abd
+  - name: Print the variable from set_facts
+    debug:
+      var: xyz

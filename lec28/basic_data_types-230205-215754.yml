@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  vars:
+    a: 52
+    b: 52.53
+    c: "Abdeali Dodiya"
+    d: true
+  tasks: 
+  - debug:
+      msg:
+      - "my a variable value is : {{a}}"
+      - "my b variable {{b}}"
+      - "my c variable {{c}}"
+      - "my d variable {{d}}"
+
