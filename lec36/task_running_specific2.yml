@@ -1,0 +1,29 @@
+---
+- name: This is playbook for tags
+  hosts: rhel
+  become: yes
+  tasks:
+  - name: Installation wget
+    yum:
+      name: wget
+      state: present
+    tags:
+      - wget_install
+  - name: Installation vim
+    yum:
+      name: vim
+      state: present
+    tags:
+      - vim_install
+  - name: Removing wget
+    yum: 
+      name: wget
+      state: absent
+    tags: 
+      - wget_remove
+  - name: Remvoing vim
+    yum:
+      name: vim
+      state: absent
+    tags:
+      - vim_remove
