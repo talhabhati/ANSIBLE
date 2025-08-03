@@ -1,0 +1,20 @@
+aadmin@ansible_master:~/ansible$ ansible ubuntu -m setup -a "filter=ansible_os_family"
+192.168.1.21 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_os_family": "Debian",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+aadmin@ansible_master:~/ansible$ ansible rhel -m setup -a "filter=ansible_os_family"
+[DEPRECATION WARNING]: Distribution rhel 9.1 on host 192.168.1.13 should use /usr/libexec/platform-python, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future
+Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information. This
+feature will be removed in version 2.12. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.13 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_os_family": "RedHat",
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false
+}
+
