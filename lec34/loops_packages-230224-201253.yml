@@ -1,0 +1,16 @@
+---
+- name: Installation package
+  hosts: rhel
+  become: yes
+  vars:
+    pacakges:
+      - name: wget
+        state: present
+      - name: git
+        state: present
+  tasks:
+  - name: Install package
+    yum: 
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+    loop: "{{pacakges}}"
