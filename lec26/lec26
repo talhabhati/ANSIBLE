@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu
+  tasks: 
+  - name: Start the services 
+    service:
+      name: apache2
+      state: started
+    register: apache_start
+  - name: Display the apache2 service status 
+    debug: 
+      msg: "Apache2 is {{ apache_start.status.SubState }} on {{inventory_hostname}}"
