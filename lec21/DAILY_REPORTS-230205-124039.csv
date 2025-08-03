@@ -1,0 +1,6 @@
+Hostname,Ip Address,Df -h (Mount storage)
+ansible_master,192.168.1.20,"Filesystem                         Size  Used Avail Use% Mounted on
+udev                               461M     0  461M   0% /dev
+/dev/mapper/ubuntu--vg-ubuntu--lv  8.8G  4.1G  4.3G  49% /
+/dev/sda2                          974M  149M  759M  17% /boot
+"
