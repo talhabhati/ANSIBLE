@@ -1,0 +1,18 @@
+---
+- hosts: rhel
+  become: yes
+  vars:
+    my_bulk_users:
+      - username: abdeali
+        password: Admin@123
+      - username: kazim
+        password: Admin@123
+      - username: ali
+        password: Admin@123
+  tasks:
+  - name: Bulk user creation
+    user:
+      name: "{{item.username}}"
+      password: "{{item.password | password_hash('sha512') }}"
+      update_password: on_create
+    loop: "{{my_bulk_users}}"
